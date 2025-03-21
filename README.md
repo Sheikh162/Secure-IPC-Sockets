@@ -9,6 +9,24 @@ This project implements secure communication between a **client** and a **server
 
 ---
 
+## Relevance to Operating Systems
+This project directly relates to **Operating Systems (OS)** in the following ways:
+
+### **1️. Secure Inter-Process Communication (IPC)**
+- In **multi-process environments**, processes often communicate using IPC mechanisms such as **sockets, pipes, shared memory, and message queues**.
+- This project enhances IPC security by **encrypting data before transmission**, ensuring that unauthorized processes cannot intercept or modify it.
+
+### **2️. Cryptographic Security in OS**
+- Modern operating systems implement **encryption mechanisms** to protect data in transit and at rest.
+- This project demonstrates how **AES encryption** can be integrated into an OS-level security mechanism for securing **network-based** IPC.
+
+### **3️. Network Security & Secure Communication**
+- OS-level network security ensures **confidentiality and integrity** of transmitted data.
+- By implementing **AES encryption over sockets**, this project ensures that data exchanged between processes remains secure against **eavesdropping & tampering**.
+
+
+```
+
 ## 📂 Project Structure
 ```
 .
@@ -86,6 +104,7 @@ g++ client.cpp -o client -lssl -lcrypto
 - If port 8080 is in use, change it in **server.cpp** and **client.cpp**.
 
 ---
+
 
 
 
