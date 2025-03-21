@@ -3,29 +3,28 @@
 This project implements secure communication between a **client** and a **server** using **AES-128 CBC encryption** with OpenSSL.
 
 ## 📌 Features
-- **AES Encryption**: Uses AES-128-CBC for encrypting and decrypting messages.
-- **Secure Key Management**: Generates and loads an AES key and IV from a file (`aes_key.bin`).
-- **Client-Server Communication**: A client encrypts a message and sends it to the server, which then decrypts it.
+- **AES Encryption**: Encrypts messages with AES-128-CBC.
+- **Secure Key Storage**: Uses a key file (`aes_key.bin`) for encryption and decryption.
+- **Client-Server Communication**: The client encrypts a message, sends it to the server, and the server decrypts it.
 
 ---
 
-## Relevance to Operating Systems
+## 🖥️ Relevance to Operating Systems
 This project directly relates to **Operating Systems (OS)** in the following ways:
 
-### **1️. Secure Inter-Process Communication (IPC)**
-- In **multi-process environments**, processes often communicate using IPC mechanisms such as **sockets, pipes, shared memory, and message queues**.
-- This project enhances IPC security by **encrypting data before transmission**, ensuring that unauthorized processes cannot intercept or modify it.
+### 1️. Secure Inter-Process Communication (IPC)
+- Processes in an OS talk to each other using **sockets, pipes, or shared memory**.
+- This project ensures that **messages sent between processes stay private** by encrypting them.
 
-### **2️. Cryptographic Security in OS**
-- Modern operating systems implement **encryption mechanisms** to protect data in transit and at rest.
-- This project demonstrates how **AES encryption** can be integrated into an OS-level security mechanism for securing **network-based** IPC.
+### 2️. Encryption in OS Security
+- Modern OSes use **encryption** to protect sensitive data.
+- Here, we use **AES encryption** to demonstrate how an OS can secure **network-based IPC**.
 
-### **3️. Network Security & Secure Communication**
-- OS-level network security ensures **confidentiality and integrity** of transmitted data.
-- By implementing **AES encryption over sockets**, this project ensures that data exchanged between processes remains secure against **eavesdropping & tampering**.
+### 3️. Network Security & Safe Communication
+- OSes protect network communication from hackers.
+- This project adds an extra **security layer** so data can’t be **read or altered** during transmission.
 
-
-```
+---
 
 ## 📂 Project Structure
 ```
@@ -50,7 +49,7 @@ sudo apt update && sudo apt install libssl-dev
 
 ---
 
-## How to Compile & Run
+## 🚀 How to Compile & Run
 ### 1. Compile the Server & Client
 ```bash
 # Compile server
@@ -72,38 +71,44 @@ g++ client.cpp -o client -lssl -lcrypto
 
 ---
 
-## How It Works
-### **1. `aes_utils.h` (AES Utility Functions)**
-- `generateAESKey()`: Generates a random AES key and IV.
-- `encryptAES()`: Encrypts data using AES-128-CBC.
-- `decryptAES()`: Decrypts AES-128-CBC encrypted data.
+## 🔍 How It Works
 
-### **2. `server.cpp` (Server Application)**
-- Listens on **port 8080** for incoming connections.
-- Loads the AES key from `aes_key.bin` (or generates a new one if missing).
-- Receives an **encrypted message** from the client and decrypts it.
-- Prints the **decrypted message** to the console.
+### **1. AES Utility (`aes_utils.h`)**
+- **`generateAESKey()`** → Creates a new AES key & IV.
+- **`encryptAES()`** → Encrypts messages with AES-128-CBC.
+- **`decryptAES()`** → Decrypts AES-128-CBC messages.
 
-### **3. `client.cpp` (Client Application)**
-- Loads the AES key from `aes_key.bin`.
-- Encrypts a message ("Hello Server!") using AES-128-CBC.
-- Connects to the server on **127.0.0.1:8080**.
+### **2. Server (`server.cpp`)**
+- Listens on **port 8080** for client messages.
+- Loads the **AES key** from `aes_key.bin` (or generates a new one).
+- Receives the **encrypted message** from the client.
+- **Decrypts & prints** the original message.
+
+### **3. Client (`client.cpp`)**
+- Loads the **AES key** from `aes_key.bin`.
+- **Encrypts** a message ("Hello Server!") using AES.
+- Connects to **127.0.0.1:8080**.
 - Sends the **encrypted message** to the server.
 
 ---
 
-## Troubleshooting
-- If `client` or `server` fails to run:
+## 🔧 Troubleshooting
+- **Executable permission issues?** Run:
   ```bash
   chmod +x client server
   ```
-- If OpenSSL is missing:
+- **Missing OpenSSL?** Install it with:
   ```bash
   sudo apt install libssl-dev
   ```
-- If port 8080 is in use, change it in **server.cpp** and **client.cpp**.
+- **Port 8080 in use?** Change it in **server.cpp** & **client.cpp**.
 
 ---
+
+## 🔒 Future Enhancements
+- **Mutual Authentication** between client & server.
+- **File Encryption & Secure Transfer**.
+- **Diffie-Hellman Key Exchange** for secure key distribution.
 
 
 
