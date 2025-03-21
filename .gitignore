@@ -1,0 +1,5 @@
+# Ignore AES keys and secrets
+aes_key.bin
+*.enc
+*.pem  # If using SSL certificates
+.env
